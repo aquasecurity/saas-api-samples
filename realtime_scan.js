@@ -60,6 +60,9 @@ makeCall('POST', '/v2/realtimes', '', body, function(err, data){
 	setInterval(function(){
 		makeCall('GET', '/v2/realtimes/' + data.data.realtime_id.toString(), '', null, function(gErr, gData){
 			if (gErr) return console.log(gErr);
+			// You may want to write this response to a file, or process it somehow else
+			// The format will be:
+			// {"status":200,"code":0,"data":{"status":"COMPLETE","message":null,"results":[_results_here_]}}
 			console.log(gData);
 		});
 	}, interval);
