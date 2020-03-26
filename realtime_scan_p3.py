@@ -15,7 +15,7 @@ api_key = "replace-with-key"
 secret = "replace-with-secret"
 key_id = 123	# The key_id you want to scan (obtain this via GET /keys)
 
-base_url = "https://stage.api.cloudsploit.com"
+base_url = "https://api.cloudsploit.com"
 interval = 5 # Decreasing this value will result in being rate limited
 
 def make_call(method, path, body):
