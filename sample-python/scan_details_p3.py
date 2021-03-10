@@ -22,7 +22,7 @@ secret = os.getenv('API_SECRET')
 scan_id = "123"
 
 endpoint = "https://api.cloudsploit.com"
-path = "/v2/scans/" + scan_id
+path = "/v2/scansv2/" + scan_id
 method = "GET"
 timestamp = str(int(time.time() * 1000))
 
