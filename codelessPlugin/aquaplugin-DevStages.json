@@ -1,0 +1,28 @@
+{
+  "id": 1043,
+  "title": "Dev Stages",
+  "description": "in prod enviornment there should not be stages called dev",
+  "severity": "low",
+  "more_info": "There should not be dev stage in prod env",
+  "recommended_action": "create stage with named after prod",
+  "link": "https://aws.amazon.com/api-gateway/",
+  "category": "API Gateway",
+  "asl": {
+    "apis": [
+      "APIGateway:getStages",
+      "APIGateway:getRestApis"
+    ],
+    "conditions": [
+      {
+        "service": "apigateway",
+        "api": "getStages",
+        "property": "item[*].stageName",
+        "op": "EQ",
+        "value": "dev",
+        "override": false,
+        "transform": "NONE"
+      }
+    ],
+    "version": 1
+  }
+}
