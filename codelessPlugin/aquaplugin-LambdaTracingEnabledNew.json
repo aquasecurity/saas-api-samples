@@ -1,0 +1,47 @@
+{
+  "id": 996,
+  "title": "Lambda Tracing Enabled New",
+  "description": "Ensures AWS Lambda functions have active tracing for X-Ray.",
+  "severity": "low",
+  "more_info": "AWS Lambda functions should have active tracing in order to gain visibility into the functions execution and performance.",
+  "recommended_action": "Modify Lambda functions to activate tracing",
+  "link": "https://docs.aws.amazon.com/lambda/latest/dg/services-xray.html",
+  "category": "Lambda",
+  "asl": {
+    "apis": [
+      "Lambda:listFunctions"
+    ],
+    "version": 1,
+    "conditions": [
+      {
+        "service": "lambda",
+        "api": "listFunctions",
+        "property": "TracingConfig.Mode",
+        "op": "EQ",
+        "value": "ACTIVE",
+        "override": false,
+        "transform": "STRING"
+      },
+      {
+        "service": "lambda",
+        "api": "listFunctions",
+        "property": "TracingConfig.Mode",
+        "op": "EQ",
+        "value": "Active",
+        "override": false,
+        "transform": "STRING",
+        "logical": "OR"
+      },
+      {
+        "service": "lambda",
+        "api": "listFunctions",
+        "property": "TracingConfig.Mode",
+        "op": "EQ",
+        "value": "active",
+        "override": false,
+        "transform": "STRING",
+        "logical": "OR"
+      }
+    ]
+  }
+}

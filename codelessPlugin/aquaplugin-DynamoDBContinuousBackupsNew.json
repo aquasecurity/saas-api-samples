@@ -1,0 +1,58 @@
+{
+  "id": 993,
+  "title": "DynamoDB Continuous Backups New",
+  "description": "Ensures that Amazon DynamoDB tables have continuous backups enabled.",
+  "severity": "low",
+  "more_info": "DynamoDB tables should have Continuous Backups and Point-In-Time Recovery (PITR) features enabled to protect DynamoDB data against accidental data writes.",
+  "recommended_action": "Enable Continuous Backups and Point-In-Time Recovery (PITR) features.",
+  "link": "https://aws.amazon.com/blogs/aws/new-amazon-dynamodb-continuous-backups-and-point-in-time-recovery-pitr/",
+  "category": "DynamoDB",
+  "asl": {
+    "apis": [
+      "DynamoDB:describeContinuousBackups",
+      "DynamoDB:listTables"
+    ],
+    "conditions": [
+      {
+        "service": "dynamodb",
+        "api": "describeContinuousBackups",
+        "property": "ContinuousBackupsDescription.ContinuousBackupsStatus",
+        "op": "EXISTS",
+        "value": "",
+        "override": false,
+        "transform": "NONE"
+      },
+      {
+        "service": "dynamodb",
+        "api": "describeContinuousBackups",
+        "property": "ContinuousBackupsDescription.ContinuousBackupsStatus",
+        "op": "EQ",
+        "value": "ENABLED",
+        "override": false,
+        "transform": "STRING",
+        "logical": "AND"
+      },
+      {
+        "service": "dynamodb",
+        "api": "describeContinuousBackups",
+        "property": "ContinuousBackupsDescription.PointInTimeRecoveryDescription.PointInTimeRecoveryStatus",
+        "op": "EXISTS",
+        "value": "",
+        "override": false,
+        "transform": "NONE",
+        "logical": "AND"
+      },
+      {
+        "service": "dynamodb",
+        "api": "describeContinuousBackups",
+        "property": "ContinuousBackupsDescription.PointInTimeRecoveryDescription.PointInTimeRecoveryStatus",
+        "op": "EQ",
+        "value": "ENABLED",
+        "override": false,
+        "transform": "STRING",
+        "logical": "AND"
+      }
+    ],
+    "version": 1
+  }
+}

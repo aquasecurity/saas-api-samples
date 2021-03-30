@@ -1,0 +1,48 @@
+{
+  "id": 990,
+  "title": "KMS Scheduled Deletion new",
+  "description": "Detects KMS keys that are scheduled for deletion",
+  "severity": "low",
+  "more_info": "Deleting a KMS key will permanently prevent all data encrypted using that key from being decrypted. Avoid deleting keys unless no encrypted data is in use.",
+  "recommended_action": "Disable the key deletion before the scheduled deletion time.",
+  "link": "http://docs.aws.amazon.com/kms/latest/developerguide/deleting-keys.html",
+  "category": "KMS",
+  "asl": {
+    "apis": [
+      "KMS:describeKey",
+      "KMS:listKeys"
+    ],
+    "conditions": [
+      {
+        "service": "kms",
+        "api": "describeKey",
+        "property": "KeyMetadata",
+        "op": "EXISTS",
+        "value": "",
+        "override": false,
+        "transform": "NONE"
+      },
+      {
+        "service": "kms",
+        "api": "describeKey",
+        "property": "KeyMetadata.KeyState",
+        "op": "EXISTS",
+        "value": "",
+        "override": false,
+        "transform": "NONE",
+        "logical": "AND"
+      },
+      {
+        "service": "kms",
+        "api": "describeKey",
+        "property": "KeyMetadata.KeyState",
+        "op": "EQ",
+        "value": "PendingDeletion",
+        "override": false,
+        "transform": "STRING",
+        "logical": "AND"
+      }
+    ],
+    "version": 1
+  }
+}
