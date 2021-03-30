@@ -1,0 +1,28 @@
+{
+  "id": 985,
+  "title": "S3 SSE Encryption",
+  "description": "Ensures SSE encryption is enabled on S3 buckets",
+  "severity": "low",
+  "more_info": "'S3 object encryption provides fully-managed encryption of all objects uploaded to an S3 bucket.',",
+  "recommended_action": "Enable SSE CMK KMS-based encryption for all S3 buckets.'",
+  "link": "https://docs.aws.amazon.com/AmazonS3/latest/dev/bucket-encryption.html",
+  "category": "S3",
+  "asl": {
+    "apis": [
+      "S3:getBucketEncryption",
+      "S3:listBuckets"
+    ],
+    "version": 1,
+    "conditions": [
+      {
+        "service": "s3",
+        "api": "getBucketEncryption",
+        "property": "ServerSideEncryptionConfiguration",
+        "op": "EXISTS",
+        "value": "",
+        "override": false,
+        "transform": "NONE"
+      }
+    ]
+  }
+}

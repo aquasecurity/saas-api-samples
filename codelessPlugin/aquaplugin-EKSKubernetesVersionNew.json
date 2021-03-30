@@ -1,0 +1,28 @@
+{
+  "id": 994,
+  "title": "EKS Kubernetes Version New",
+  "description": "Ensures the specific version of Kubernetes is installed on EKS clusters",
+  "severity": "low",
+  "more_info": "EKS supports provisioning clusters from several versions of Kubernetes. Clusters should be kept up to date to ensure Kubernetes security patches are applied.",
+  "recommended_action": "Upgrade the version of Kubernetes on all EKS clusters to the latest available version.",
+  "link": "https://docs.aws.amazon.com/eks/latest/userguide/kubernetes-versions.html",
+  "category": "EKS",
+  "asl": {
+    "apis": [
+      "EKS:describeCluster",
+      "EKS:listClusters"
+    ],
+    "conditions": [
+      {
+        "service": "eks",
+        "api": "describeCluster",
+        "property": "cluster.version",
+        "op": "GT",
+        "value": "1.10",
+        "override": false,
+        "transform": "NONE"
+      }
+    ],
+    "version": 1
+  }
+}

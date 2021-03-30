@@ -1,0 +1,27 @@
+{
+  "id": 1042,
+  "title": "Bucket Naming",
+  "description": "Bucket Naming starting with Aqua",
+  "severity": "low",
+  "more_info": "buckets should be named after company name",
+  "recommended_action": "create buckets with names starting with aqua",
+  "link": "http://docs.aws.amazon.com/AmazonS3/latest/dev/Versioning.html",
+  "category": "S3",
+  "asl": {
+    "apis": [
+      "S3:listBuckets"
+    ],
+    "conditions": [
+      {
+        "service": "s3",
+        "api": "listBuckets",
+        "property": "Name",
+        "op": "MATCHES",
+        "value": "^aqua.*$",
+        "override": false,
+        "transform": "NONE"
+      }
+    ],
+    "version": 1
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "id": 992,
+  "title": "SNS Topic CMK Encryption new",
+  "description": "Ensures Amazon SNS topics are encrypted with KMS Customer Master Keys (CMKs).",
+  "severity": "low",
+  "more_info": "AWS SNS topics should be  encrypted with KMS Customer Master Keys (CMKs) instead of AWS managed-keys in order to have a more granular control over the SNS data-at-rest encryption and decryption process.",
+  "recommended_action": "Update SNS topics to use Customer Master Keys (CMKs) for Server-Side Encryption.",
+  "link": "https://docs.aws.amazon.com/sns/latest/dg/sns-server-side-encryption.html",
+  "category": "SNS",
+  "asl": {
+    "apis": [
+      "SNS:getTopicAttributes",
+      "SNS:listTopics"
+    ],
+    "conditions": [
+      {
+        "service": "sns",
+        "api": "getTopicAttributes",
+        "property": "Attributes.KmsMasterKeyId",
+        "op": "EXISTS",
+        "value": "",
+        "override": false,
+        "transform": "NONE"
+      },
+      {
+        "service": "sns",
+        "api": "getTopicAttributes",
+        "property": "Attributes.KmsMasterKeyId",
+        "op": "EQ",
+        "value": "alias/aws/sns",
+        "override": false,
+        "transform": "STRING",
+        "logical": "AND"
+      }
+    ],
+    "version": 1
+  }
+}

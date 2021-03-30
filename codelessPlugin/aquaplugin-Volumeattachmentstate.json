@@ -1,0 +1,27 @@
+{
+  "id": 1044,
+  "title": "Volume attachment state",
+  "description": "volumes should be attached",
+  "severity": "low",
+  "more_info": "Find out unattached volumes",
+  "recommended_action": "Remove un-attached volumes",
+  "link": "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-volumes.html",
+  "category": "EC2",
+  "asl": {
+    "apis": [
+      "EC2:describeVolumes"
+    ],
+    "conditions": [
+      {
+        "service": "ec2",
+        "api": "describeVolumes",
+        "property": "Attachments[*].State",
+        "op": "NE",
+        "value": "attached",
+        "override": false,
+        "transform": "NONE"
+      }
+    ],
+    "version": 1
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "id": 989,
+  "title": "IAM Username Matches Regex new",
+  "description": "Ensures all IAM user names match the given regex",
+  "severity": "low",
+  "more_info": "Many organizational policies require IAM user names to follow a common naming convention. This check ensures these conventions are followed.",
+  "recommended_action": "Rename the IAM user name to match the provided regex.",
+  "link": "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users.html",
+  "category": "IAM",
+  "asl": {
+    "apis": [
+      "IAM:generateCredentialReport"
+    ],
+    "conditions": [
+      {
+        "service": "iam",
+        "api": "generateCredentialReport",
+        "property": "user",
+        "op": "MATCHES",
+        "value": "^.*$",
+        "override": false,
+        "transform": "STRING"
+      }
+    ],
+    "version": 1
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "id": 1045,
+  "title": "Key Rotation enabled",
+  "description": "Key rotation should be enabled",
+  "severity": "low",
+  "more_info": "When you enable automatic key rotation for a customer managed CMK, AWS KMS generates new cryptographic material for the CMK every year",
+  "recommended_action": "Enable automatic key rotation for a customer managed CMK,",
+  "link": "https://docs.aws.amazon.com/kms/latest/developerguide/rotate-keys.html",
+  "category": "KMS",
+  "asl": {
+    "apis": [
+      "KMS:getKeyRotationStatus",
+      "KMS:listKeys"
+    ],
+    "version": 1,
+    "conditions": [
+      {
+        "service": "kms",
+        "api": "getKeyRotationStatus",
+        "property": "KeyRotationEnabled",
+        "op": "ISTRUE",
+        "value": "",
+        "override": false,
+        "transform": "NONE"
+      }
+    ]
+  }
+}

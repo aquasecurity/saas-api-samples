@@ -1,0 +1,38 @@
+{
+  "id": 986,
+  "title": "S3 Bucket Versioning New",
+  "description": "Ensures object versioning is enabled on S3 buckets",
+  "severity": "low",
+  "more_info": "Object versioning can help protect against the overwriting of objects or data loss in the event of a compromise.",
+  "recommended_action": "Enable Bucketversioning",
+  "link": "http://docs.aws.amazon.com/AmazonS3/latest/dev/Versioning.html",
+  "category": "S3",
+  "asl": {
+    "apis": [
+      "S3:getBucketVersioning",
+      "S3:listBuckets"
+    ],
+    "version": 1,
+    "conditions": [
+      {
+        "service": "s3",
+        "api": "getBucketVersioning",
+        "property": "Status",
+        "op": "EQ",
+        "value": "Enabled",
+        "override": false,
+        "transform": "STRING"
+      },
+      {
+        "service": "s3",
+        "api": "getBucketVersioning",
+        "property": "Status",
+        "op": "EXISTS",
+        "value": "",
+        "override": false,
+        "transform": "NONE",
+        "logical": "AND"
+      }
+    ]
+  }
+}

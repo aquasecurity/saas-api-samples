@@ -1,0 +1,27 @@
+{
+  "id": 1039,
+  "title": "ec2 instance are not of nano type",
+  "description": "detect if instances are of nano size",
+  "severity": "low",
+  "more_info": "this plugin checks that instance type should not be t2.nano",
+  "recommended_action": "upgrade the instance to be above than nano",
+  "link": "https://aws.amazon.com/ec2/instance-types/",
+  "category": "EC2",
+  "asl": {
+    "apis": [
+      "EC2:describeInstances"
+    ],
+    "conditions": [
+      {
+        "service": "ec2",
+        "api": "describeInstances",
+        "property": "Instances[*].InstanceType",
+        "op": "NE",
+        "value": "t2.nano",
+        "override": false,
+        "transform": "STRING"
+      }
+    ],
+    "version": 1
+  }
+}
