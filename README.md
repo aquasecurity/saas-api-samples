@@ -1,6 +1,12 @@
 # SaaS API Samples for Cloud aquasec
 
+# Table of Contents
+- [Python samples](#python-samples)
+- [Javascript samples](#javascript-samples)
+
 ## Python samples
+
+`cd sample-python`
 
 Create a virtual environment (if you prefer) and install the libs
 
@@ -11,4 +17,6 @@ pip install -r requirements.txt
 python3 file.py
 ```
 
-## Javascrip samples
+## Javascript samples
+
+`cd sample-js`
