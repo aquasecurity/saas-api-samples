@@ -7,10 +7,16 @@ import hmac
 import base64
 import hashlib
 import requests
+import os
+from os.path import join, dirname
+from dotenv import load_dotenv
+
+dotenv_path = join(dirname(__file__), '.env')
+load_dotenv(dotenv_path)
 
 # Obtain a CloudSploit API key and secret from the dashboard
-api_key = "replace-with-key"
-secret = "replace-with-secret"
+api_key = os.getenv('API_KEY')
+secret = os.getenv('API_SECRET')
 
 # Include limit and offset here
 # Set the limit=1 and remove "offset" entirely (don't set to 0)
