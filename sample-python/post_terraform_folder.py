@@ -19,13 +19,14 @@ load_dotenv(dotenv_path)
 # Obtain a CloudSploit API key and secret from the dashboard
 api_key = os.getenv('API_KEY')
 secret = os.getenv('API_SECRET')
+folder = os.getenv('FOLDER_TERRAFORM')
 
 # Get the sample.zip
 os.chdir('../')
 path = os.getcwd()
 
 # Load a ZIP file containing Terraform files
-zip_folder_path = path + "/sample.zip"
+zip_folder_path = path + folder
 
 endpoint = "https://api.cloudsploit.com"
 path = "/v2/terraforms"
