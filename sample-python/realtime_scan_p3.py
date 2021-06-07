@@ -19,7 +19,7 @@ load_dotenv(dotenv_path)
 # Obtain a CloudSploit API key and secret from the dashboard
 api_key = os.getenv('API_KEY')
 secret = os.getenv('API_SECRET')
-key_id = 123	# The key_id you want to scan (obtain this via GET /keys)
+key_id = int(os.getenv('KEY_ID'))	
 
 base_url = "https://api.cloudsploit.com"
 interval = 5 # Decreasing this value will result in being rate limited
@@ -50,7 +50,7 @@ def make_call(method, path, body):
 
 	# print method + " " + endpoint
 
-	if method is "POST":
+	if method == "POST":
 		r=requests.post(endpoint, headers=hdr, data=body_str);
 	else:
 		r=requests.get(endpoint, headers=hdr);

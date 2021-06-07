@@ -18,13 +18,14 @@ load_dotenv(dotenv_path)
 # Obtain a CloudSploit API key and secret from the dashboard
 api_key = os.getenv('API_KEY')
 secret = os.getenv('API_SECRET')
+cf_file = os.getenv('CLOUDFORMATION_YAML')
 
 # Get the sample.zip
 os.chdir('../')
 path = os.getcwd()
 
 # Load a YAML file from disk
-yaml_file_path = path + "/sample_cf.yaml"
+yaml_file_path = path + cf_file
 
 endpoint = "https://api.cloudsploit.com"
 path = "/v2/cloudformations"
