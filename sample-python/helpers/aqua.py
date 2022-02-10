@@ -57,7 +57,7 @@ def compliance_report(scan_id: int, program_id: int = 1):
     """
     Get compliance report for a compliance program
 
-    Reference: https://api.cloudsploit.com/v2/compliances?scan_id={scan_id}&program_id={program_id}&summary=compliance
+    Reference: https://cloudsploit.docs.apiary.io/#reference/compliances/compliances-collection/get-list-all-compliances
     """
     url = f"{BASE_API_URL}/compliances?scan_id={scan_id}&program_id={program_id}&summary=compliance"
 
